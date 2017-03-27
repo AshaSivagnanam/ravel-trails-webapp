@@ -1,0 +1,19 @@
+{
+    "name": "Traveler",
+    "base": "User",
+    "idInjection": false,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {},
+    "validations": [],
+    "relations": {
+        "trails": {
+            "type": "hasMany",
+            "model": "Trail",
+            "foreignKey": "userfbid"
+        }
+    },
+    "acls": [],
+    "methods": {}
+}

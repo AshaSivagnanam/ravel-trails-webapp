@@ -1,0 +1,182 @@
+/* Space out content a bit */
+body {
+  padding-top: 10px;
+  padding-bottom: 20px;  
+  /*font-family: 'Tangerine', serif;*/
+  font-family: "Amadeus", Amadeus-Regular !important;
+  /*font-family: 'Indie Flower', sans-serif;*/
+  /*font-family: 'Poiret One', sans-serif;*/
+  /*background-image: url('baby-foot-mini.png');*/
+  /*background-repeat: repeat;*/
+  /*background-color:  rgba(239, 196, 143, 0.82);*/
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+/* Custom page header */
+.header {
+  padding: 29px;
+  border-bottom: 1px solid #e5e5e5;
+  background-image: url('images/baby-foot-mini.png');
+  background-repeat: repeat;
+}
+.header h1 {
+  font-size: 50px;
+  font-weight: bold;
+  /*color:white;*/
+}
+
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 20px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+
+.slider-selection {
+  background: grey !important ;
+}
+
+.blue {
+color : blue;
+}
+
+.orange {
+color : orange;
+}
+
+.green {
+  color : green;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+/* Customize container */
+@media (min-width: 1000px) {
+  .container {
+    max-width: 1200px;
+    width: 1200px;
+    /*background-image: url('baby-foot-mini.png');
+    background-repeat: repeat;*/
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+.vcenter {
+    /*display: inline-block;
+    vertical-align: middle;
+    float: none;*/
+    margin-top: 6%; 
+}
+.result {
+  border-bottom: 2px solid orange;
+}
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  background-color: #86CCDC;
+}
+.jumbotron .btn {
+  padding: 4px 15px;
+  font-size: 17px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 25px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 5px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+.table tbody tr td {
+  font-weight: 500;
+  text-align: center;
+}
+
+.table {
+  margin-bottom: 0px !important;
+  border: 0px;
+}
+
+.rightPanel {
+  padding-left:  0;
+}
+
+.rightPanel .panel {
+  border :0;
+}
+
+.leftPanel .panel {
+  border :1;
+}
+
+.leftPanel {
+  padding-right: 0;
+}
+
+.yellow {
+color: rgba(224, 23, 23, 0.61);
+}
+
+.detail .ite {
+  background-image: url('images/trail.png');
+}
+
+.bgimage {
+  background: url('images/tt-bg3.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.marketing {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.modal-dialog {
+  margin-top: 250px;
+}
+.modal-body {
+  padding: 4px;
+}

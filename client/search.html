@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- <link rel="icon" href="../../favicon.ico"> -->
+        <title>Amadeus Travel Trails</title>
+        <!-- Bootstrap core CSS -->
+        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+        <!-- Custom styles for this template -->
+        <link href="jumbotron-narrow.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.1/css/bootstrap-slider.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="dist/js/bootstrap.min.js"></script>
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.1/bootstrap-slider.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.js"></script>
+        <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+        <script src="lib/lb-services.js"></script>
+        <script src="app.js"></script>
+        <script>
+            /*    $(document).ready(function() {
+                    $("#search").click(function() {
+                        $(".marketing").toggle("slow");
+                    });
+                    $('#slider12c').slider({
+                        min: 0,
+                        max: 10,
+                        value: [2, 5],
+                        labelledby: ['ex18-label-2a', 'ex18-label-2b'],
+                        tooltip: 'always',
+                        tooltip_position: 'bottom'
+                    });
+                });*/
+                
+        </script>
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body ng-app="myApp">
+    <!-- <body ng-app="myApp" class="bgimage">         -->
+        <div class="container" ng-controller="myController">
+            <div class="header clearfix">
+                <nav>
+                    <!-- <ul class="nav nav-pills pull-right">
+                        <li role="presentation" class="active"><a href="#">Home</a></li>
+                        <li role="presentation"><a href="#">About</a></li>
+                        <li role="presentation"><a href="#">Contact</a></li>
+                        </ul> -->
+                </nav>
+                <h1 class="text-muted text-primary text-center">Amadeus Travel Trails <span></span></h1>
+            </div>
+            <div class="jumbotron row">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <div class="input-group input-group-md">
+                        <input type="text" id="departure" class="form-control" placeholder="Origin">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group input-group-md">
+                        <input type="text" id="arrival" class="form-control" placeholder="Destination">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group input-group-md btn btn-md btn-primary" ng-click="search()"><span class="glyphicon glyphicon-search"></span></div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row marketing" style="display:none;">
+                <div class="jumbotron col-md-3">
+                    <h4><b>Filters<span class="glyphicon glyphicon-filter"></span></b></h4>
+                    <div class="row"><b>Duartion (in Days)<b>
+                        <span id="ex18-label-2a" class="hidden">Example low value</span>
+                        <span id="ex18-label-2b" class="hidden">Example high value</span>
+                        <input id="slider12c" class="slider"/>
+                    </div>
+                    <div class="row">
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <b>Include<b>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <input type="checkbox" aria-label="..." id="attractions">
+                            </span>
+                            <label class="form-control" align="left">Attractions</label>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <input type="checkbox" aria-label="..." id="events">
+                            </span>
+                            <label class="form-control" align="left">Events</label>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <input type="checkbox" aria-label="..." id="restaurants">
+                            </span>
+                            <label class="form-control" align="left">Restaurants</label>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <input type="checkbox" aria-label="..." id="cruise">
+                            </span>
+                            <label class="form-control" align="left">Cruise</label>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <input type="checkbox" aria-label="..." id="shopping">
+                            </span>
+                            <label class="form-control" align="left">Shopping</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <b>Price Range<b>
+                        <div class="col">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                <input type="text" id="min-price" class="form-control" placeholder="Min" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                <input type="text" id="max-price" class="form-control" placeholder="Max" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Profile Preferences</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                        <input type="checkbox" id="family">
+                                        </span>
+                                        <label class="form-control">Family</label>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                        <input type="checkbox" id="fav">
+                                        </span>
+                                        <label class="form-control">Fav Activities</label>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                        <input type="checkbox" id="veg">
+                                        </span>
+                                        <label class="form-control">Vegetarian</label>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-13  leftPanel">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Search Results</div>
+                            <div class="panel-body" id="searchresults">
+                                <div class="result" ng-show="filterTrails(trail)" ng-repeat="trail in trails">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div>
+                                                <a href="javascript:void()">
+                                                    <h4><b>{{trail.name}} {{trail.durationInDays}} </b>
+                                                        <span ng-show="trailHasItem(trail.items,'air') == true" title="Flight Info" class="glyphicon glyphicon-plane text-success"></span>
+                                                        <span ng-show="trailHasItem(trail.items,'hotel')" title="Hotel Info" class="glyphicon glyphicon-bed text-info"></span>
+                                                        <span ng-show="trailHasItem(trail.items,'restaurant')" title="Restaurant Info" class="glyphicon glyphicon-cutlery green"></span>
+                                                        <span ng-show="trailHasItem(trail.items,'attraction')" title="Attractions In.fo" class="glyphicon glyphicon-map-marker "></span>
+                                                        <i title="Group" ng-show="trailHasItem(trail.items,'group')" title="Group" class="fa fa-users"></i>
+                                                        <i title="Car" ng-show="trailHasItem(trail.items,'car')" class="fa fa-taxi green"></i>
+                                                        <span ng-show="trailHasItem(trail.items,'shopping')" title="Shopping Info" class="glyphicon glyphicon-shopping-cart orange"></span>
+                                                        <i title="Cruise" ng-show="trailHasItem(trail.items,'cruise')" class="fa fa-ship light-blue"></i>
+                                                    </h4>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <p>{{trail.dayWisePlan}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning progress-bar-striped" style="width:35%">
+                                                            35% Profile Match
+                                                        </div>
+                                                        <div class="progress-bar progress-bar-info progress-bar-striped" style="width:65%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2"><span class="glyphicon glyphicon-share"></span></div>
+                                                <div class="col-md-3">
+                                                    <span class="glyphicon glyphicon-star yellow" ng-repeat="i in [] | range:trail.rating">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col vcenter">
+                                                <!-- <div class="row"> -->
+                                                    <div class="input-group input-group-sm">
+                                                        <a class="" href="#" role="button">
+                                                            <img src="../images/viewtrail.png" style="width:12%" title="View trail">
+                                                        </a>&nbsp;&nbsp;
+                                                        <a href ng-click="showTaAnlytics()" role="button">
+                                                            <img src="../images/prediction.png" style="width:16%" title="Trail analytics"/>
+                                                        </a>&nbsp;&nbsp;
+                                                        <a href ng-click="" role="button">
+                                                            <img src="../images/uservalidate.png" style="width:12%" title="User validated"/>
+                                                        </a>&nbsp;&nbsp;
+                                                        <a href ng-click="" role="button">
+                                                            <img src="../images/following2.png" style="width:24%" title="877 Followers"/>
+                                                        </a>
+                                                    </div>
+                                                    <!-- <div class="input-group input-group-sm">
+                                                        <a class="" href="#" role="button">
+                                                            <img src="../images/prediction.png" style="width:18%"/>
+                                                        </a>
+                                                    </div> -->
+                                                <!-- </div> -->
+                                            </div>
+                                            <!-- <div class="col vcenter">
+                                                <a ng-href="{{analyticsPage}}" target="_blank">View Analytics data</a>
+                                                <button type="button" ng-click="openAnalyticsPage()" class="btn btn-info">View Analytics data</button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer ">
+                                <ul class="pagination col-centered ">
+                                    <li><a class="active" href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3 rightPanel">
+                       <div class="panel panel-success">
+                            <div class="panel-heading">Analytics</div>
+                            <div class="panel-body">
+                                <a ng-href="{{analyticsPage}}" target="_blank">View Analytics data</a>
+                                <button type="button" ng-click="openAnalyticsPage()" class="btn btn-info">View Analytics data</button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-md-5 rightPanel">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Analytics</div>
+                            <div class="panel-body">
+                                <div class="result">
+                                    <div class="row">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Travellers Booked</th>
+                                                    <th>Available Services</th>
+                                                    <th>Profit if Booked</th>
+                                                    <th>Popularity</th>
+                                                    <th>Trusted Trail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>47</td>
+                                                    <td>85%</td>
+                                                    <td>67%</td>
+                                                    <td>In Top 50</td>
+                                                    <td>Yes</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="result">
+                                    <div class="row">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Travellers Booked</th>
+                                                    <th>Available Services</th>
+                                                    <th>Profit if Booked</th>
+                                                    <th>Popularity</th>
+                                                    <th>Trusted Trail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>27</td>
+                                                    <td>35%</td>
+                                                    <td>47%</td>
+                                                    <td>In Top 80</td>
+                                                    <td>No</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="result">
+                                    <div class="row">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Travellers Booked</th>
+                                                    <th>Available Services</th>
+                                                    <th>Profit if Booked</th>
+                                                    <th>Popularity</th>
+                                                    <th>Trusted Trail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>35</td>
+                                                    <td>80%</td>
+                                                    <td>60%</td>
+                                                    <td>In Top 75</td>
+                                                    <td>Yes</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="result">
+                                    <div class="row">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Travellers Booked</th>
+                                                    <th>Available Services</th>
+                                                    <th>Profit if Booked</th>
+                                                    <th>Popularity</th>
+                                                    <th>Trusted Trail</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>24</td>
+                                                    <td>25%</td>
+                                                    <td>27%</td>
+                                                    <td>In Top 99</td>
+                                                    <td>No</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="row detail">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-9">
+                    <div class="ite"></div>
+                </div>
+            </div>
+            <!-- <div class="col-md-2">
+                </div> -->
+        </div>
+        <!-- <footer class="footer">
+            <p>&copy; 2015 Company, Inc.</p>
+            </footer> -->
+        </div>
+        <!-- /container -->
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<!-- Analytics data content -->
+<script type="text/ng-template" id="analytics.html">
+<div class="modal fade">
+        <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <img src="../images/prediction.png" style="width:5%"/>
+                    <span class="modal-title"><Strong>&nbsp;Trail Analytics</Strong></span>
+                <div class="modal-body">
+                    <div class="result">
+                        <div class="row">
+                            <table class="table">
+                                <thead style="background-color:#86CCDC;">
+                                    <tr>
+                                        <th>Travellers Booked</th>
+                                        <th>Available Services</th>
+                                        <th>Profit if Booked</th>
+                                        <th>Popularity</th>
+                                        <th>Trusted Trail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>47</td>
+                                        <td>85%</td>
+                                        <td>67%</td>
+                                        <td>In Top 50</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</script>
+    </body>
+</html>

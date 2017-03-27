@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- <link rel="icon" href="../../favicon.ico"> -->
+        <title>Amadeus Travel Trails</title>
+        <!-- Bootstrap core CSS -->
+        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+        <!-- Custom styles for this template -->
+        <link href="jumbotron-narrow.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="dist/js/bootstrap.min.js"></script>
+        <!--<script src="index.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.js"></script>
+        <script>
+            window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '156830984786265',
+            xfbml      : true,
+            version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+        FB.getLoginStatus(function(response){
+            if(response.status === 'connected') {
+                console.log("User logged in");
+                FB.api('/me', function(currentUser){
+                    console.log(currentUser); // id, name
+                    //localStorage.setItem('user', {'name' : currentUser.name, 'id' : currentUser.id});
+                    document.cookie = "username=" + currentUser.name;
+                    document.cookie = "userid=" + currentUser.id;
+                });    
+                //window.location.href = "/search.html";
+            }
+            else if(response.status === 'not_authorized') {
+                console.log("User not authorized app");
+            }
+            else {
+                console.log("User not logged in");
+            }
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    
+    function login() {
+        FB.login(function(response) {
+            if(response.authResponse) {
+                console.log("User authorized app");
+                FB.api('/me', function(currentUser){
+                    console.log(currentUser); // id, name
+                    document.cookie = "username=" + currentUser.name ;
+                    document.cookie = "userid=" + currentUser.id;
+                    //localStorage.setItem('user', {'name' : currentUser.name, 'id' : currentUser.id});
+                    //test();
+/*                            FB.api('/me/friends/1104227586356450', function(res) {
+                        console.log(res);
+                    });
+                    var url = '/me/friends';
+                    FB.api(url, function(res){
+                        console.log("friends");
+                        console.log(res);
+                    });*/
+                    
+
+                });
+                //window.location.href = "/search.html";
+            }
+            console.log(response);
+        });
+    }
+    </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header clearfix">
+                <h1 class="text-muted text-primary text-center">Amadeus Travel Trails <span></span></h1>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" onclick ="login()">Login with Facebook</button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </body>
+</html>

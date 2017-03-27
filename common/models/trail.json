@@ -1,0 +1,52 @@
+{
+    "name": "Trail",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "name": {
+            "type": "string",
+            "required": false
+        },
+        "departureCity": {
+            "type": "string"
+        },
+        "arrivalCity": {
+            "type": "string"
+        },
+        "durationInDays": {
+            "type": "number"
+        },
+        "numOfTravelers": {
+            "type": "number"
+        },
+        "costPerPerson": {
+            "type": "string"
+        },
+        "totalcost": {
+            "type": "string"
+        },
+        "dayWisePlan": {
+            "type": ["string"]
+        },
+        "rating": {
+            "type": "number"
+        },
+        "status": {
+            "type": "string",
+            "required": true
+        }
+    },
+    "validations": [],
+    "relations": {
+        "items": {
+            "type": "hasMany",
+            "model": "Item",
+            "foreignKey": ""
+        }
+    },
+    "acls": [],
+    "methods": {}
+}

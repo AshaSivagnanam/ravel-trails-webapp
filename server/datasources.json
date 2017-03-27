@@ -1,0 +1,20 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mymongodb": {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "url": "",
+    "database": "trailsDB",
+    "password": "",
+    "name": "mymongodb",
+    "user": "",
+    "connector": "mongodb"
+  },
+  "transient": {
+    "name": "transient",
+    "connector": "transient"
+  }
+}
